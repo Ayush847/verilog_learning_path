@@ -1,0 +1,8 @@
+module encoder(a,b,c,d,x,y);
+  input a,b,c,d;
+  output x,y;
+  
+  assign x=b|a;
+  assign y=a|c;
+  
+endmodule
