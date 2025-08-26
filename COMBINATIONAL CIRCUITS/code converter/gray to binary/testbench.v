@@ -1,0 +1,34 @@
+module g_to_b_tb;
+  reg [3:0] g;
+  wire [3:0] b;
+  
+  g_to_b_conv DUT(
+    .g(g),
+    .b(b));
+  
+  initial begin
+    $monitor("g=%b, b=%b", g,b);
+    g = 4'b0000; #10;
+    g = 4'b0001; #10;
+    g = 4'b0010; #10;
+    g = 4'b0011; #10;
+    g = 4'b0100; #10;
+    g = 4'b0101; #10;
+    g = 4'b0110; #10;
+    g = 4'b0111; #10;
+    g = 4'b1000; #10;
+    g = 4'b1001; #10;
+    g = 4'b1010; #10;
+    g = 4'b1011; #10;
+    g = 4'b1100; #10;
+    g = 4'b1101; #10;
+    g = 4'b1110; #10;
+    g = 4'b1111; #10;
+    
+    $finish;
+  end
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, g_to_b_tb);
+  end
+endmodule
