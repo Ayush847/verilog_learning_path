@@ -1,0 +1,7 @@
+module conv(
+  input [3:0] xs,
+  output [3:0] bcd);
+  
+  assign bcd = xs - 4'b0011;
+  
+endmodule
