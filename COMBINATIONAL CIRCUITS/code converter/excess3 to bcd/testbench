@@ -1,0 +1,21 @@
+module conv_tb;
+  reg [3:0] xs;
+  wire [3:0] bcd;
+  
+  conv DUT(
+    .xs(xs),
+    .bcd(bcd));
+  
+  initial begin
+    $monitor("xs=%b, bcd=%b", xs,bcd);
+    for(xs=4'b0011; xs<=4'b1100; xs=xs+1) begin
+      #10;
+    end
+  end
+    
+   initial begin
+      $dumpfile("dump.vcd");
+      $dumpvars(0, conv_tb);
+    end
+endmodule
+   
