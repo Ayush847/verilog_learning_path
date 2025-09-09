@@ -1,0 +1,14 @@
+`timescale 1ns/ 1ps
+
+module sr_latch(
+  input s,r,
+  output q,q_bar);
+  
+  wire q_in, q_bar_in;
+  
+  assign q=q_in;
+  assign q_bar = q_bar_in;
+  
+  assign q_in = ~(r | q_bar_in);
+  assign q_bar_in = ~(s | q_in);
+endmodule
