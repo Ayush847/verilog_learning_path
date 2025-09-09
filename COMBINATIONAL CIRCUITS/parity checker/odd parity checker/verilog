@@ -1,0 +1,6 @@
+module odd_parity_checker(
+  input a,b,c,d,p,
+  output z);
+  
+  assign z = ~(a^b^c^d^p);
+endmodule
