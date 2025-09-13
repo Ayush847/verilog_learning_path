@@ -1,0 +1,25 @@
+module t_ff_tb;
+  reg t, clk;
+  wire q;
+
+  t_ff DUT(
+    .t(t),
+    .clk(clk),
+    .q(q)
+  );
+  initial clk = 0;
+  always #5 clk = ~clk;
+
+  initial begin
+    $monitor("t=%b, clk=%b, q=%b", t, clk, q);
+    t = 0; #10;
+    t = 1; #20;
+    t = 0; #10;
+    t = 1; #20;
+    $finish;
+  end
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, t_ff_tb);
+  end
+endmodule
