@@ -1,0 +1,32 @@
+module piso_tb;
+  reg clk, rst, load;
+  reg [3:0] in;
+  wire out;
+  piso DUT(
+    .clk(clk),
+    .rst(rst),
+    .load(load),
+    .in(in),
+    .out(out)
+  );
+  initial clk = 0;
+  always #5 clk = ~clk;
+
+  initial begin
+    $monitor("clk=%b rst=%b load=%b in=%b out=%b", clk, rst, load, in, out);
+    rst = 1; load = 0; in = 4'b0000;
+    #10 rst = 0;
+
+    @(posedge clk);
+    in = 4'b1010; load = 1;
+    @(posedge clk);
+    load = 0;
+    repeat (8) @(posedge clk);
+    $finish;
+  end
+
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, piso_tb);
+  end
+endmodule
