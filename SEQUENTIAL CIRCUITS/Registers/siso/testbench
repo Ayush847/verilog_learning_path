@@ -1,0 +1,26 @@
+module siso_tb;
+  reg d,clk;
+  wire q;
+  
+  siso DUT(
+    .d(d),
+    .q(q),
+    .clk(clk));
+  
+  initial clk = 0;
+  always #5 clk = ~clk;
+  
+  initial begin
+    $monitor("d=%b, clk=%b,q=%b",d,clk,q);
+    d=1; #10;
+    d=0; #10;
+    d=1; #10;
+    d=1; #10;
+    d=0; #60;
+    $finish;
+  end
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, siso_tb);
+  end
+endmodule
