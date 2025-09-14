@@ -1,0 +1,12 @@
+module sipo #(parameter n =4)(
+  input clk, rst, in,
+  output reg [n-1:0] q);
+  
+  always @(posedge clk) begin
+    if(rst) begin
+      q <= 0;
+    end
+    else
+      q <= {q[n-2:0], in};
+  end
+endmodule
