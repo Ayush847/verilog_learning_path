@@ -1,0 +1,26 @@
+module pipo_tb;
+  reg [3:0] d;
+  reg clk;
+  wire [3:0] q;
+  
+  pipo DUT(
+    .d(d),
+    .clk(clk),
+    .q(q));
+  
+  initial clk = 0;
+  always #5 clk = ~clk;
+  
+  initial begin
+    $monitor("clk =%b, d=%b, q=%b",clk,d,q);
+    d=4'b0001; #12;
+    d=4'b1010; #20;
+    d=4'b1100; #20;
+    d=4'b1000; #20;
+    $finish;
+  end
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, pipo_tb);
+  end
+endmodule
