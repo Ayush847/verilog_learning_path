@@ -1,0 +1,13 @@
+module siso(
+  input d,clk,
+  output reg q);
+  reg [3:0] shift;
+  
+  always @(posedge clk) begin
+    shift[0] <= d;
+    shift[1] <= shift[0];
+    shift[2] <= shift[1];
+    shift[3] <= shift[2];
+    q <= shift[3];
+  end
+endmodule
