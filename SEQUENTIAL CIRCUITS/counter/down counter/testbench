@@ -1,0 +1,30 @@
+module ripple_tb;
+  reg clk, rst;
+  wire [3:0] q;
+
+  ripple DUT (
+    .clk(clk),
+    .rst(rst),
+    .q(q)
+  );
+
+  initial clk = 0;
+  always #5 clk = ~clk;
+
+  initial begin
+    $monitor("Time=%0t clk=%b rst=%b q=%b", $time, clk, rst, q);
+
+    rst = 1;
+    #15;
+    rst = 0;
+
+    #200;
+
+    $finish;
+  end
+
+  initial begin
+    $dumpfile("ripple_tb.vcd");
+    $dumpvars(0, ripple_tb);
+  end
+endmodule
